@@ -5,116 +5,25 @@ import java.util.LinkedList;
 public class Constants {
 	
 	/*
+	 * Fangs Constants
+	 */
+	public static final int kFangsTalonID = 9;
+	public static final double fangsReverseLimit = 0;
+	public static final double fangsForwardLimit = 0;
+	
+	/*
 	 * Feeder Constants
 	 */
-	public static final int kFeederLeftTalonID = 7;
-	public static final int kFeederRightTalonID = 8;
 	
-	/*
-	 * Conveyor constants
-	 */
-	public static final int kConveyorTalonID = 12;
+	public static final int kFeederTalonID = 10;
 	
-	/*
-	 * Agitator Constants
-	 */
-	public static final int kAgitatorTalonID = 13;
 	
 	/*
 	 * Climber Constants
 	 */
-	public static final int kClimberTalonID = 14;
+	public static final int kClimberTalonID = 11;
 
-	/*
-	 * Pneumatics Constants
-	 */
-	public static final int kShifterForward = 0;
-	public static final int kShifterReverse = 1;
-	public static final int kGearDoorForward = 3;
-	public static final int kGearDoorBackward = 2;
 	
-	public static final int kGearFlapForward = 4;
-	public static final int kGearFlapBackward = 5;
-	
-	/*
-	 * Turret Constants
-	 */
-	public static final int kLittleFlywheelTalonID = 9;
-	public static final int kBigFlywheelTalonID = 10;
-	public static final int kTurretTalonID = 11;
-	
-	public static final int kTurretTeeth = 128;
-	public static final int kTurretPinionTeeth = 24;
-	public static final double kTurretPotAngleRatio = ((double) kTurretPinionTeeth/kTurretTeeth);
-	
-
-	public static final double kTurretPositionP = 0.0; //2.0
-	public static final double kTurretPositionI = 0.0; //0.005
-	public static final double kTurretPositionD = 0.0; //0.75
-	public static final double kTurretPositionF = 0;   //0
-	public static final int kTurretPositionIZone = 0;  //40
-	public static final double kTurretTolerance = 0.5/360.0; //turret pot rotations
-	
-			/**
-			 * Last calibration date: NEVER
-			 * 
-			 * units: raw turret pot rotations
-			 **/
-	public static final int kTurretReverseLimit = 0;
-	public static final int kTurretForwardLimit = 0;
-	
-	/*
-	 * Shooter Constants
-	 */
-	
-	public static class ShooterPreset {
-		public final double bigWheelRPM;
-
-		/**
-		 * @param bigWheelRPM
-		 * @param littleWheelRPM
-		 */
-		public ShooterPreset(double bigWheelRPM) {
-			this.bigWheelRPM = bigWheelRPM;
-		}
-	}
-
-	//3010 for mid
-	//2950
-	
-	public static enum Preset {
-		close(new ShooterPreset(3490)), mid(new ShooterPreset(3680)), far(new ShooterPreset(4320));
-
-		private final ShooterPreset preset;
-
-		Preset(ShooterPreset preset) {
-			this.preset = preset;
-		}
-
-		public ShooterPreset get() {
-			return preset;
-		}
-	}
-	
-	public static double kFlywheelRPMTolerance = 200;
-	
-	public static double kBigFlywheelMaxRPM = 5000;
-	public static double kBigFlywheelMinRPM = 1200;
-	public static double kBigFlywheelP = 0.034; // 0.084 0.06
-	public static double kBigFlywheelI = 0.0; // 0.012 0.006
-	public static double kBigFlywheelD = 0.8; // 0.25 0.2
-	public static double kBigFlywheelF = 0.0335;
-	public static int kBigFlywheelIZone = 40;
-	
-	public static double kLittleFlywheelMaxRPM = 5000;
-	public static double kLittleFlywheelMinRPM = 1200;
-	public static double kLittleFlywheelP = 0.014;
-	public static double kLittleFlywheelI = 0.008;
-	public static double kLittleFlywheelD = 0.28;
-	public static double kLittleFlywheelF = 0.0435;
-	public static int kLittleFlywheelIZone = 40;
-	
-	public static double kShooterWaitTime = 0.5;
 
 	/*
 	 * Drive Constants
@@ -122,9 +31,12 @@ public class Constants {
 	public static final int kLeftMasterTalonID = 1;
 	public static final int kLeftSlaveOneTalonID = 2;
 	public static final int kLeftSlaveTwoTalonID = 3;
-	public static final int kRightMasterTalonID = 4;
-	public static final int kRightSlaveOneTalonID = 5;
-	public static final int kRightSlaveTwoTalonID = 6;
+	public static final int kLeftSlaveThreeTalonID = 4;
+
+	public static final int kRightMasterTalonID = 5;
+	public static final int kRightSlaveOneTalonID = 6;
+	public static final int kRightSlaveTwoTalonID = 7;
+	public static final int kRightSlaveThreeTalonID = 8;
 	
 	
 	public static double kDriveWheelDiameter = 3.95;

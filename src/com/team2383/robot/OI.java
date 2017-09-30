@@ -12,33 +12,28 @@ import com.team2383.ninjaLib.OnChangeButton;
 import com.team2383.ninjaLib.SetState;
 import com.team2383.ninjaLib.Values;
 import com.team2383.ninjaLib.WPILambdas;
-import com.team2383.robot.subsystems.Feeder;
-import com.team2383.robot.subsystems.GearDoor;
-import com.team2383.robot.subsystems.GearFlap;
-import com.team2383.robot.Constants.Preset;
+import com.team2383.robot.subsystems.Fangs;
+
 import com.team2383.robot.commands.AutoDriveStraight;
-import com.team2383.robot.commands.DumbSpool;
-import com.team2383.robot.commands.Tuner;
-import com.team2383.robot.commands.MoveTurret;
+import com.team2383.robot.commands.MoveFangs;
+
+import com.team2383.robot.commands.MoveFangs;
 import com.team2383.robot.commands.PrecisionDrive;
-import com.team2383.robot.commands.Shoot;
-import com.team2383.robot.commands.Spool;
+
 import com.team2383.robot.commands.TeleopDriveStraight;
-import com.team2383.robot.commands.UsePreset;
-import com.team2383.robot.subsystems.Agitator;
+
 import com.team2383.robot.subsystems.Climber;
 import com.team2383.ninjaLib.SetState;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 
-import static com.team2383.robot.HAL.shooter;
-import static com.team2383.robot.HAL.feeder;
-import static com.team2383.robot.HAL.agitator;
-import static com.team2383.robot.HAL.gearDoor;
-import static com.team2383.robot.HAL.gearFlap;
+
+import static com.team2383.robot.HAL.fangs;
+
 import static com.team2383.robot.HAL.climber;
 
 
@@ -115,51 +110,21 @@ public class OI {
 	
 	//Operator
 	public static Joystick operator = new Joystick(2);
-	
-	
-	public static Button feedIn = new JoystickButton(operator, 3);
-	public static Button feedOut = new JoystickButton(operator, 4);
-	
-	public static Button agitatorOn = new JoystickButton(operator, 8);
-	public static Button agitatorUnjam = new JoystickButton(operator, 10);
-	
-	public static Button climb = new JoystickButton(operator, 6);
-	public static Button actuateGearDoor = new JoystickButton(operator, 5);
-	public static Button actuateGearFlap = new JoystickButton(operator, 12);
-	
-	
-	
-	//Tuner
-	public static Joystick tuner = new Joystick(3);
-	public static DoubleSupplier turretStick = () -> deadband.applyAsDouble(tuner.getTwist());
-	
-	public static Button bigFlywheelIncrement = new JoystickButton(tuner, 7);
-	public static Button bigFlywheelDecrement = new JoystickButton(tuner, 9);
-	
-	public static Button shoot = new JoystickButton(tuner, 1);
-	public static Button spool = new JoystickButton(tuner, 2);
 
 	
 	
-	public static Button moveTurret = new JoystickButton(tuner,3);
 	
-	public static Button presetClose = new JoystickButton(tuner, 8);
-	public static Button presetMid = new JoystickButton(tuner, 10);
-	public static Button presetFar = new JoystickButton(tuner, 11);
+	public static Button climb1 = new JoystickButton(operator, 6);
 	
 	
 	
+	// All-in-one
+	public static Gamepad advancedOperator = new Gamepad(4);
 	
-	public static Button enableTuning = WPILambdas.createButton(() -> {
-		boolean result = false;
-		for(int i = 7; i <= 10; i++) {
-			if (tuner.getRawButton(i)) result = true;
-		}
-		return result;
-	});
-	
-	
-	
+	public static Button climb2 = new JoystickButton(advancedOperator, 3);
+	public static double leftTrigger = advancedOperator.getRawAxis(2);
+	public static double rightTrigger = advancedOperator.getRawAxis(3);
+
 	
 	public OI() {
 		
@@ -169,36 +134,11 @@ public class OI {
 		
 		
 		
-		feedIn.whileHeld(new SetState<Feeder.State>(feeder, Feeder.State.FEEDING, Feeder.State.STOPPED));
-		feedOut.whileHeld(new SetState<Feeder.State>(feeder, Feeder.State.OUTFEEDING, Feeder.State.STOPPED));
-		
-		//TODO: add sensor to agitator so operator can just toggle on/off when necessary and agitator handles rest.
-		agitatorOn.whileHeld(new SetState<Agitator.State>(agitator, Agitator.State.FEEDING, Agitator.State.STOPPED));
-		agitatorUnjam.whileHeld(new SetState<Agitator.State>(agitator, Agitator.State.UNJAM, Agitator.State.STOPPED));
-		
-		climb.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
-		
-		moveTurret.whileHeld(new MoveTurret(OI.turretStick));
 		
 		
-		actuateGearDoor.toggleWhenActive(new SetState<GearDoor.State>(gearDoor, GearDoor.State.EXTENDED, GearDoor.State.RETRACTED));
-		actuateGearFlap.toggleWhenActive(new SetState<GearFlap.State>(gearFlap, GearFlap.State.EXTENDED, GearFlap.State.RETRACTED));
+		climb1.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
+		climb2.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
+
 		
-		spool.whileHeld(new Spool());
-		shoot.whileHeld(new Shoot());
-		
-		Tuner bigFlywheelTuner = new Tuner(shooter.getBigWheelRPMSetpoint(), 10, 0.02, 0.5);
-		Command enableFlywheelTuning = WPILambdas.runOnceCommand(() -> {
-			shooter.setBigFlywheelRPMSupplier(bigFlywheelTuner::getValue);
-		}, false);
-		
-		bigFlywheelIncrement.whileHeld(bigFlywheelTuner.getIncrementCommand());
-		bigFlywheelDecrement.whileHeld(bigFlywheelTuner.getDecrementCommand());
-		enableTuning.whenPressed(enableFlywheelTuning);
-		
-		
-		presetClose.whileHeld(new UsePreset(Preset.close));
-		presetMid.whileHeld(new UsePreset(Preset.mid));
-		presetFar.whileHeld(new UsePreset(Preset.far));
 	}
 }

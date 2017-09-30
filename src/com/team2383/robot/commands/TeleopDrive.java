@@ -82,8 +82,7 @@ public class TeleopDrive extends Command {
 				return (val > 1.0) ? 1.0 : val;
 			};
 		}
-		drivetrain.shiftTo(gear);
-		cdh.cheesyDrive(drivetrain, throttle.getAsDouble(), turn.getAsDouble(), gear == Gear.HIGH);
+		cdh.cheesyDrive(drivetrain, -throttle.getAsDouble() / 2, -turn.getAsDouble() / 2, gear == Gear.HIGH);
 		
 		SmartDashboard.putBoolean("Automatic Shifting", autoShift);
 		SmartDashboard.putBoolean("Dirty Automatic Shifting", dirty);

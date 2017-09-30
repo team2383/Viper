@@ -22,10 +22,12 @@ public class Drivetrain extends Subsystem implements PIDSource{
 	public final CANTalon leftMaster;
 	private final CANTalon leftSlaveOne;
 	private final CANTalon leftSlaveTwo;
+	private final CANTalon leftSlaveThree;
+
 	public final CANTalon rightMaster;
 	private final CANTalon rightSlaveOne;
 	private final CANTalon rightSlaveTwo;
-	private final DoubleSolenoid shifter;
+	private final CANTalon rightSlaveThree;
 
 	public enum Gear {
 		LOW, HIGH;
@@ -46,12 +48,13 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		leftMaster = new CANTalon(Constants.kLeftMasterTalonID);
 		leftSlaveOne = new CANTalon(Constants.kLeftSlaveOneTalonID);
 		leftSlaveTwo = new CANTalon(Constants.kLeftSlaveTwoTalonID);
-
+		leftSlaveThree = new CANTalon(Constants.kLeftSlaveThreeTalonID);
+		
 		rightMaster = new CANTalon(Constants.kRightMasterTalonID);
 		rightSlaveOne = new CANTalon(Constants.kRightSlaveOneTalonID);
 		rightSlaveTwo = new CANTalon(Constants.kRightSlaveTwoTalonID);
+		rightSlaveThree = new CANTalon(Constants.kRightSlaveThreeTalonID);
 
-		shifter = new DoubleSolenoid(Constants.kShifterReverse, Constants.kShifterForward);
 		
 		/*
 		 * Configure drive talons 
@@ -64,6 +67,8 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		leftSlaveOne.set(leftMaster.getDeviceID());
 		leftSlaveTwo.changeControlMode(TalonControlMode.Follower);
 		leftSlaveTwo.set(leftMaster.getDeviceID());
+		leftSlaveThree.changeControlMode(TalonControlMode.Follower);
+		leftSlaveThree.set(leftMaster.getDeviceID());
 
 		rightMaster.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		rightMaster.reverseSensor(true);
@@ -73,7 +78,9 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		rightSlaveOne.set(rightMaster.getDeviceID());
 		rightSlaveTwo.changeControlMode(TalonControlMode.Follower);
 		rightSlaveTwo.set(rightMaster.getDeviceID());
-
+		rightSlaveThree.changeControlMode(TalonControlMode.Follower);
+		rightSlaveThree.set(rightMaster.getDeviceID());
+		
 		this.robotDrive = new RobotDrive(leftMaster, rightMaster);
 		robotDrive.setSafetyEnabled(false);
 	}
@@ -90,51 +97,13 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		robotDrive.arcadeDrive(driveSpeed, -turnSpeed);
 	}
 
-	public void shiftTo(Gear gear) {
-		switch (gear) {
-		default:
-		case HIGH:
-			enableBrake();
-			shifter.set(Value.kForward);
-			break;
-		case LOW:
-			disableBrake();
-			shifter.set(Value.kReverse);
-			break;
-		}
-	}
-
-	public void shift() {
-		if (getGear() == Gear.HIGH) {
-			shiftTo(Gear.LOW);
-		} else {
-			shiftTo(Gear.HIGH);
-		}
-	}
 
 	public void resetEncoders() {
 		leftMaster.setPosition(0);
 		rightMaster.setPosition(0);
 	}
 
-	public Gear getGear() {
-		switch (shifter.get()) {
-		case kForward:
-			return Gear.HIGH;
-		default:
-		case kReverse:
-			return Gear.LOW;
-		}
-	}
-	
-	public boolean isHigh(){
-		if(shifter.get() == Value.kForward){
-			return true;
-		}
-		else {
-			return false;
-		}	
-	}
+
 
 	public double getRotations() {
 		double rotations;

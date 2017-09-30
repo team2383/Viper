@@ -85,7 +85,6 @@ public class DriveDistance extends Command {
 		this.distanceController.enable();
 		drivetrain.resetEncoders();
 		navX.reset();
-		drivetrain.shiftTo(gear);
 		drivetrain.setBrake(brake);
 	}
 

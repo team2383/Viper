@@ -51,6 +51,17 @@ public class Gamepad extends Joystick {
 	public double getRightX() {
 		return getRawAxis(AXIS_RIGHT_X);
 	}
+	
+	
+	public double getLeftTrigger() {
+		return getRawAxis(AXIS_SHOULDER_L);
+	}
+	
+	public double getRightTrigger() {
+		return getRawAxis(AXIS_SHOULDER_R);
+	}
+	
+	
 
 	/**
 	 * Returns the Y position of the left stick.
