@@ -13,14 +13,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveFangs extends Command {
-	private final double leftTrigger;
-	private final double rightTrigger;
+	private final double speed;
 
-	public MoveFangs(double leftTrigger, double rightTrigger) {
+	public MoveFangs(double speed) {
 		super("Move Fangs");
 		requires(fangs);
-		this.leftTrigger = leftTrigger;
-		this.rightTrigger = rightTrigger;
+		this.speed = speed;
 	}
 
 	@Override
@@ -30,17 +28,8 @@ public class MoveFangs extends Command {
 	@Override
 	protected void execute() {
 	
-		double _leftTrigger = leftTrigger;
-		double _rightTrigger = rightTrigger;
+		fangs.moveAtSpeed(speed);
 		
-		
-		
-		if(_leftTrigger == 1.0){
-			fangs.moveAtSpeed(0.5);
-		}
-		if(_rightTrigger == 1.0){
-			fangs.moveAtSpeed(0.5);
-		}
 	}
 
 	@Override

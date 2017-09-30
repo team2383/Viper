@@ -13,7 +13,7 @@ import com.team2383.ninjaLib.SetState;
 import com.team2383.ninjaLib.Values;
 import com.team2383.ninjaLib.WPILambdas;
 import com.team2383.robot.subsystems.Fangs;
-
+import com.team2383.robot.subsystems.Feeder;
 import com.team2383.robot.commands.AutoDriveStraight;
 import com.team2383.robot.commands.MoveFangs;
 
@@ -26,6 +26,7 @@ import com.team2383.robot.subsystems.Climber;
 import com.team2383.ninjaLib.SetState;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -33,7 +34,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 import static com.team2383.robot.HAL.fangs;
-
+import static com.team2383.robot.HAL.feeder;
 import static com.team2383.robot.HAL.climber;
 
 
@@ -122,8 +123,12 @@ public class OI {
 	public static Gamepad advancedOperator = new Gamepad(4);
 	
 	public static Button climb2 = new JoystickButton(advancedOperator, 3);
-	public static double leftTrigger = advancedOperator.getRawAxis(2);
-	public static double rightTrigger = advancedOperator.getRawAxis(3);
+	public static Button leftTrigger = advancedOperator.getLeftTriggerClick();
+	public static Button rightTrigger = advancedOperator.getRightTriggerClick();
+	
+	public static Button leftBumper = advancedOperator.getLeftShoulder();
+	public static Button rightBumper = advancedOperator.getRightShoulder();
+
 
 	
 	public OI() {
@@ -138,7 +143,12 @@ public class OI {
 		
 		climb1.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		climb2.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
-
+		
+		leftTrigger.whileHeld(new MoveFangs(-0.4));
+		rightTrigger.whileHeld(new MoveFangs(0.4));
+		
+		leftBumper.whileHeld(new SetState<Feeder.State>(feeder, Feeder.State.UNFEED, Feeder.State.STOPPED));
+		rightBumper.whileHeld(new SetState<Feeder.State>(feeder, Feeder.State.FEED, Feeder.State.STOPPED));
 		
 	}
 }

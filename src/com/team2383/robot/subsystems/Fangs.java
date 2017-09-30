@@ -44,7 +44,7 @@ public class Fangs extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		this.setDefaultCommand(new MoveFangs(OI.leftTrigger, OI.rightTrigger));
+		
 	}
 
 }
