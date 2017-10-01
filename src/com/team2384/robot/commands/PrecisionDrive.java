@@ -7,9 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PrecisionDrive extends TeleopDrive {
 	
-	public PrecisionDrive(DoubleSupplier throttle, DoubleSupplier turn, BooleanSupplier toggleAutoShift,
-			BooleanSupplier lowGear, BooleanSupplier highGear) {
-		super((() -> (throttle.getAsDouble() / 2)) , (() -> (turn.getAsDouble() / 2)), toggleAutoShift, lowGear, highGear);
+	public PrecisionDrive(DoubleSupplier throttle, DoubleSupplier turn) {
+		super((() -> (throttle.getAsDouble() / 2)) , (() -> (turn.getAsDouble() / 2)));
 	}
 	
 	protected void initialize() {

@@ -81,6 +81,12 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		rightSlaveThree.changeControlMode(TalonControlMode.Follower);
 		rightSlaveThree.set(rightMaster.getDeviceID());
 		
+		
+		leftMaster.configPeakOutputVoltage(12.0, -12.0);
+		rightMaster.configPeakOutputVoltage(12.0,-12.0);
+		leftMaster.setVoltageRampRate(48);
+        rightMaster.setVoltageRampRate(48);
+		
 		this.robotDrive = new RobotDrive(leftMaster, rightMaster);
 		robotDrive.setSafetyEnabled(false);
 	}
@@ -168,7 +174,7 @@ public class Drivetrain extends Subsystem implements PIDSource{
 
 	@Override
 	protected void initDefaultCommand() {
-		this.setDefaultCommand(new TeleopDrive(OI.throttle, OI.turn, OI.toggleAutoShift::get, OI.shiftDown::get, OI.shiftUp::get));
+		this.setDefaultCommand(new TeleopDrive(OI.throttle, OI.turn));
 	}
 
 	public void setBrake(boolean brake) {
