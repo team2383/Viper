@@ -41,7 +41,7 @@ public class TeleopDrive extends Command {
 
 	@Override
 	protected void execute() {
-		cdh.cheesyDrive(drivetrain, -throttle.getAsDouble()/1.8, -turn.getAsDouble()/1.8, gear == Gear.HIGH);
+		cdh.cheesyDrive(drivetrain, -throttle.getAsDouble()/1.8, -turn.getAsDouble()/2, gear == Gear.HIGH);
 	}
 
 	@Override

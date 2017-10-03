@@ -3,6 +3,7 @@ package com.team2384.robot.commands;
 
 import static com.team2384.robot.HAL.navX;
 import static com.team2384.robot.HAL.drivetrain;
+import static com.team2384.robot.HAL.fangs;
 
 import com.team2384.auto.TestDrive;
 import com.team2384.robot.Constants;
@@ -38,6 +39,9 @@ public class GeneralPeriodic extends Command {
     	SmartDashboard.putNumber("drivetrain right rotations", drivetrain.rightMaster.getPosition());
     	SmartDashboard.putNumber("drivetrain rotations", drivetrain.getRotations());
     	SmartDashboard.putNumber("drivetrain inches", drivetrain.getInches());
+    	
+    	
+    	SmartDashboard.putNumber("fang position", fangs.get());
  
     }
 

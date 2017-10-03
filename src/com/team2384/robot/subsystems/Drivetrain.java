@@ -108,7 +108,7 @@ public class Drivetrain extends Subsystem implements PIDSource{
 	public void arcade(double driveSpeed, double turnSpeed) {
 		leftMaster.changeControlMode(TalonControlMode.PercentVbus);
 		rightMaster.changeControlMode(TalonControlMode.PercentVbus);
-		robotDrive.arcadeDrive(driveSpeed, -turnSpeed);
+		robotDrive.arcadeDrive(driveSpeed, -turnSpeed,true);
 	}
 
 
