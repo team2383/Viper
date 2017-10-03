@@ -28,7 +28,7 @@ public class Feeder extends com.team2384.ninjaLib.SetState.StatefulSubsystem<Fee
 	}
 	public void unfeed(){
 		feeder.enableBrakeMode(false);
-			feeder.set(-0.4);
+			feeder.set(-0.6);
 	}
 	public void stop() {
 		feeder.enableBrakeMode(true);

@@ -61,25 +61,33 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		 */
 		leftMaster.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		leftMaster.reverseSensor(false);
+		leftMaster.enableBrakeMode(true);
 		leftMaster.setPID(Constants.kDriveHoldPositionP, Constants.kDriveHoldPositionI, Constants.kDriveHoldPositionD,
 				Constants.kDriveHoldPositionF, Constants.kDriveHoldPositionIZone, 0, 1);
 		leftSlaveOne.changeControlMode(TalonControlMode.Follower);
 		leftSlaveOne.set(leftMaster.getDeviceID());
+		leftSlaveOne.enableBrakeMode(true);
 		leftSlaveTwo.changeControlMode(TalonControlMode.Follower);
 		leftSlaveTwo.set(leftMaster.getDeviceID());
+		leftSlaveTwo.enableBrakeMode(true);
 		leftSlaveThree.changeControlMode(TalonControlMode.Follower);
 		leftSlaveThree.set(leftMaster.getDeviceID());
+		leftSlaveThree.enableBrakeMode(true);
 
 		rightMaster.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		rightMaster.reverseSensor(true);
 		rightMaster.setPID(Constants.kDriveHoldPositionP, Constants.kDriveHoldPositionI, Constants.kDriveHoldPositionD,
 				Constants.kDriveHoldPositionF, Constants.kDriveHoldPositionIZone, 0, 1);
+		rightMaster.enableBrakeMode(true);
 		rightSlaveOne.changeControlMode(TalonControlMode.Follower);
 		rightSlaveOne.set(rightMaster.getDeviceID());
+		rightSlaveOne.enableBrakeMode(true);
 		rightSlaveTwo.changeControlMode(TalonControlMode.Follower);
 		rightSlaveTwo.set(rightMaster.getDeviceID());
+		rightSlaveTwo.enableBrakeMode(true);
 		rightSlaveThree.changeControlMode(TalonControlMode.Follower);
 		rightSlaveThree.set(rightMaster.getDeviceID());
+		rightSlaveThree.enableBrakeMode(true);
 		
 		
 		leftMaster.configPeakOutputVoltage(12.0, -12.0);

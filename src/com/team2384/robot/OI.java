@@ -72,7 +72,7 @@ public class OI {
 	private static DoubleUnaryOperator inputExpo = (x) -> {
 		return Constants.inputExpo * Math.pow(x, 3) + (1 - Constants.inputExpo) * x;
 	};
-
+	
 	private static DoubleUnaryOperator deadband = (x) -> {
 		return Math.abs(x) > Constants.inputDeadband ? x : 0;
 	};
@@ -92,6 +92,9 @@ public class OI {
 	public static Button rightBumper = advancedOperator.getRightShoulder();
 	
 	public static Button precisionDrive = advancedOperator.getLeftStickClick();
+	
+	
+
 
 	
 	public OI() {
