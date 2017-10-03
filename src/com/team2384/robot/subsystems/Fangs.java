@@ -26,11 +26,6 @@ public class Fangs extends Subsystem {
 		fang.changeControlMode(TalonControlMode.Position);
 		fang.setPID(Constants.kFangPositionP, Constants.kFangPositionI, Constants.kFangPositionD,
 				Constants.kFangPositionF, Constants.kFangPositionIZone, 0, 0);
-		
-		fang.setReverseSoftLimit(Constants.fangsReverseLimit);
-		fang.setForwardSoftLimit(Constants.fangsForwardLimit);
-		fang.enableForwardSoftLimit(false);
-		fang.enableReverseSoftLimit(false);
 		fang.configPeakOutputVoltage(6.0, -6.0);
 		fang.reverseOutput(false);
 		fang.reverseSensor(false);
@@ -59,7 +54,6 @@ public class Fangs extends Subsystem {
 	}
 	
 	public void holdPosition() {
-		fang.setProfile(1);
 		fang.changeControlMode(TalonControlMode.Position);
 		fang.setSetpoint(fang.getPosition());
 	}

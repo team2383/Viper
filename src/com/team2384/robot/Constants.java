@@ -75,15 +75,13 @@ public class Constants {
 	public static double kPidSetpointWait = 0.15;
 	
 	
-	public static double kFangPositionP = 0.0;   
-	public static double kFangPositionI = 0.00;
-	public static double kFangPositionD = 0.000; 
+	public static double kFangPositionP = 0.05;   
+	public static double kFangPositionI = 0.001;
+	public static double kFangPositionD = 0.1; 
 	public static double kFangPositionF = 0.0;
 	public static int kFangPositionIZone = 0;
 	
-	
-	public static double kFangForwardLimit;
-	public static double kFangReverseLimit;
+	public static double kFangRange = 0.0;
 
 	public static double inputExpo = 0.32;
 	public static double inputDeadband = 0.05;
