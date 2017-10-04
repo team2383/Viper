@@ -16,7 +16,7 @@ public class HoldFangs extends Command{
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	fangs.holdPosition();
+    	//fangs.holdPosition();
     }
 
     // Called repeatedly when this Command is scheduled to run

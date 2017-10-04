@@ -105,7 +105,7 @@ public class OI {
 		climb.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		
 		leftTrigger.whileHeld(new MoveFangs(-0.4));
-		rightTrigger.whileHeld(new MoveFangs(0.4));
+		rightTrigger.whileHeld(new MoveFangs(0.6));
 		
 		leftBumper.whileHeld(new SetState<Feeder.State>(feeder, Feeder.State.UNFEED, Feeder.State.STOPPED));
 		rightBumper.whileHeld(new SetState<Feeder.State>(feeder, Feeder.State.FEED, Feeder.State.STOPPED));

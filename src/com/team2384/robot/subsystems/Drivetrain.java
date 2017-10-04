@@ -90,25 +90,25 @@ public class Drivetrain extends Subsystem implements PIDSource{
 		rightSlaveThree.enableBrakeMode(true);
 		
 		
-		leftMaster.configPeakOutputVoltage(12.0, -12.0);
-		rightMaster.configPeakOutputVoltage(12.0,-12.0);
+		leftMaster.configPeakOutputVoltage(10.0, -10.0);
+		rightMaster.configPeakOutputVoltage(10.0,-10.0);
 		leftMaster.setVoltageRampRate(48);
         rightMaster.setVoltageRampRate(48);
 		
-		this.robotDrive = new RobotDrive(leftMaster, rightMaster);
+		this.robotDrive = new RobotDrive(rightMaster, leftMaster);
 		robotDrive.setSafetyEnabled(false);
 	}
 
 	public void tank(double leftValue, double rightValue) {
 		leftMaster.changeControlMode(TalonControlMode.PercentVbus);
 		rightMaster.changeControlMode(TalonControlMode.PercentVbus);
-		robotDrive.tankDrive(rightValue, leftValue);
+		robotDrive.tankDrive(leftValue, rightValue);
 	}
 
 	public void arcade(double driveSpeed, double turnSpeed) {
 		leftMaster.changeControlMode(TalonControlMode.PercentVbus);
 		rightMaster.changeControlMode(TalonControlMode.PercentVbus);
-		robotDrive.arcadeDrive(-driveSpeed, turnSpeed,true);
+		robotDrive.arcadeDrive(driveSpeed, -turnSpeed,true);
 	}
 
 
