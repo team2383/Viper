@@ -29,15 +29,6 @@ public class Drivetrain extends Subsystem implements PIDSource{
 	private final CANTalon rightSlaveTwo;
 	private final CANTalon rightSlaveThree;
 
-	public enum Gear {
-		LOW, HIGH;
-
-		@Override
-		public String toString() {
-			return super.toString().toLowerCase();
-		}
-	}
-
 	public Drivetrain() {
 		super("Drivetrain");
 		
@@ -133,7 +124,7 @@ public class Drivetrain extends Subsystem implements PIDSource{
 			System.out.println("Failed to get encoder rotations of drivetrain");
 			rotations = 0;
 		}
-		return rotations;
+		return rotations * Constants.kDriveEncoderScalar;
 	}
 
 	public double getVelocity() {
@@ -150,7 +141,7 @@ public class Drivetrain extends Subsystem implements PIDSource{
 			System.out.println("Failed to get encoder speed of drivetrain");
 			rotations = 0;
 		}
-		return rotations;
+		return rotations * Constants.kDriveEncoderScalar;
 	}
 	
 	

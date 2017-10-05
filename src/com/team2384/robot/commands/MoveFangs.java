@@ -2,15 +2,7 @@ package com.team2384.robot.commands;
 
 import static com.team2384.robot.HAL.fangs;
 
-import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
-
-import com.team2384.ninjaLib.CheesyDriveHelper;
-import com.team2384.robot.HAL;
-import com.team2384.robot.subsystems.Drivetrain.Gear;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveFangs extends Command {
 	private final double speed;

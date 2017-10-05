@@ -2,6 +2,9 @@
 package com.team2384.robot;
 
 
+import com.team2384.auto.LeftGear;
+import com.team2384.auto.PlaceGear;
+import com.team2384.auto.RightGear;
 import com.team2384.auto.TestDrive;
 import com.team2384.auto.TestTurn;
 
@@ -33,10 +36,11 @@ public class Robot extends IterativeRobot {
 		
 		autoChooser = new SendableChooser<Command>();
 		autoChooser.addObject("null auto", new NullAuto());
-	
-		
+		autoChooser.addObject("Left Gear", new LeftGear());
+		autoChooser.addObject("Right Gear", new RightGear());
 		autoChooser.addObject("Test Drive", new TestDrive());
 		autoChooser.addObject("Test Turn", new TestTurn());
+		autoChooser.addObject("Test Gear Place", new PlaceGear());
 		SmartDashboard.putData("Auto Chooser", autoChooser);
 		
 	}

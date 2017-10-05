@@ -7,7 +7,6 @@ import java.util.function.DoubleSupplier;
 
 import com.team2384.ninjaLib.CheesyDriveHelper;
 import com.team2384.robot.HAL;
-import com.team2384.robot.subsystems.Drivetrain.Gear;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,22 +15,12 @@ public class TeleopDrive extends Command {
 	private final DoubleSupplier turn;
 	private final DoubleSupplier throttle;
 	private final CheesyDriveHelper cdh;
-	private boolean autoShift;
-	private boolean dirty;
-	private double timeSlow;
-	private double lastCheck;
-	private Gear gear;
 
 	public TeleopDrive(DoubleSupplier throttle, DoubleSupplier turn) {
 		super("Teleop Drive");
 		requires(drivetrain);
 		this.throttle = throttle;
 		this.turn = turn;
-		this.autoShift = false;
-		this.gear = Gear.LOW;
-		this.dirty = false;
-		this.timeSlow = 0.0;
-		this.lastCheck = 0.0;
 		this.cdh = new CheesyDriveHelper();
 	}
 
@@ -41,7 +30,7 @@ public class TeleopDrive extends Command {
 
 	@Override
 	protected void execute() {
-		cdh.cheesyDrive(drivetrain, throttle.getAsDouble(), turn.getAsDouble(), gear == Gear.HIGH);
+		cdh.cheesyDrive(drivetrain, throttle.getAsDouble(), turn.getAsDouble());
 	}
 
 	@Override

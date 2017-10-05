@@ -15,7 +15,7 @@ public class CheesyDriveHelper {
 	private final double turnSensitivityLow = 0.75;
 	private final double turnSensitivityHigh = 0.85;
 
-	public void cheesyDrive(Drivetrain drivetrain, double throttle, double wheel, boolean isHighGear) {
+	public void cheesyDrive(Drivetrain drivetrain, double throttle, double wheel) {
 		double wheelNonLinearity;
 
 		boolean isQuickTurn = Math.abs(throttle) < 0.1;
@@ -24,19 +24,11 @@ public class CheesyDriveHelper {
 
 		double negInertia = wheel - oldWheel;
 		oldWheel = wheel;
-
-		if (isHighGear) {
-			wheelNonLinearity = 0.6;
-			// Apply a sin function that's scaled to make it feel better.
-			wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-			wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		} else {
-			wheelNonLinearity = 0.5;
-			// Apply a sin function that's scaled to make it feel better.
-			wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-			wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-			wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		}
+		
+		wheelNonLinearity = 0.6;
+		// Apply a sin function that's scaled to make it feel better.
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / Math.sin(Math.PI / 2.0 * wheelNonLinearity);
 
 		double leftSpeed, rightSpeed, overPower;
 		double sensitivity;
@@ -47,25 +39,12 @@ public class CheesyDriveHelper {
 		// Negative inertia!
 		double negInertiaAccumulator = 0.0;
 		double negInertiaScalar;
-		if (isHighGear) {
-			if (Math.abs(wheel) > 0.65) {
-				negInertiaScalar = 6.5;
-			} else {
-				negInertiaScalar = 4.5;
-			}
-			sensitivity = turnSensitivityHigh;
+		if (Math.abs(wheel) > 0.65) {
+			negInertiaScalar = 6.5;
 		} else {
-			if (wheel * negInertia > 0) {
-				negInertiaScalar = 2.5;
-			} else {
-				if (Math.abs(wheel) > 0.65) {
-					negInertiaScalar = 5.5;
-				} else {
-					negInertiaScalar = 3.0;
-				}
-			}
-			sensitivity = turnSensitivityLow;
+			negInertiaScalar = 4.5;
 		}
+		sensitivity = turnSensitivityHigh;
 		double negInertiaPower = negInertia * negInertiaScalar;
 		negInertiaAccumulator += negInertiaPower;
 
@@ -86,11 +65,7 @@ public class CheesyDriveHelper {
 				quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha * Values.limit(-1.0, wheel, 1.0) * 5;
 			}
 			overPower = 1.0;
-			if (isHighGear) {
-				sensitivity = 1.0;
-			} else {
-				sensitivity = 1.0;
-			}
+			sensitivity = 1.0;
 			angularPower = wheel;
 		} else {
 			overPower = 0.0;

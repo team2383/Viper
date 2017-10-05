@@ -4,10 +4,8 @@ import static com.team2384.robot.HAL.drivetrain;
 import static com.team2384.robot.HAL.navX;
 
 import com.team2384.robot.Constants;
-import com.team2384.robot.subsystems.Drivetrain.Gear;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroTurn extends PIDCommand {
@@ -38,6 +36,7 @@ public class GyroTurn extends PIDCommand {
 	public GyroTurn(double velocity, double angle, double tolerance, double wait) {
 		super("Set Heading", Constants.kDriveTurnP, 0.0, Constants.kDriveTurnD);
 		requires(drivetrain);
+		this.getPIDController().reset();
 		this.getPIDController().setInputRange(-180.0, 180.0);
 		this.getPIDController().setOutputRange(-velocity, velocity);
 		this.getPIDController().setContinuous();
@@ -97,7 +96,7 @@ public class GyroTurn extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		if (this.timeSinceInitialized() > 0.1) {
-			drivetrain.tank(output, -output); // vish's fix for gyro
+			drivetrain.tank(output, -output);
 		} else {
 			System.out.println("Waiting for reset");
 		}
