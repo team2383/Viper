@@ -48,7 +48,7 @@ public class Constants {
 	public static double kDriveDownshiftFPSThreshold = 3.0;
 
 	public static double kDriveTurnTolerance = 1.0;
-	public static double kDriveTurnP = 0.0137;
+	public static double kDriveTurnP = 0.015;
 	public static double kDriveTurnI = 0.003; //0.01
 	public static double kDriveTurnD = 0.03;  //0.4
 	public static double kDriveTurnIZone = 10;

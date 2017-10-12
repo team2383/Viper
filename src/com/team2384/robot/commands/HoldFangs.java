@@ -2,6 +2,7 @@ package com.team2384.robot.commands;
 
 import static com.team2384.robot.HAL.fangs;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,7 +17,9 @@ public class HoldFangs extends Command{
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	fangs.moveAtSpeed(0.2);
+    	if (DriverStation.getInstance().isAutonomous()) {
+    		fangs.moveAtSpeed(0.2);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

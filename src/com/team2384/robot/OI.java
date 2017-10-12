@@ -101,8 +101,8 @@ public class OI {
 		
 		precisionDrive.whileHeld(new PrecisionDrive(throttle, turn));
 
-	
-		climb.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
+		climb.toggleWhenPressed(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
+		//climb.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		
 		leftTrigger.whileHeld(new MoveFangs(-0.4));
 		rightTrigger.whileHeld(new MoveFangs(0.6));

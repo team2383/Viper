@@ -30,7 +30,7 @@ public class TeleopDrive extends Command {
 
 	@Override
 	protected void execute() {
-		cdh.cheesyDrive(drivetrain, throttle.getAsDouble(), turn.getAsDouble());
+		cdh.cheesyDrive(drivetrain, throttle.getAsDouble()/1.5, turn.getAsDouble()/1.5);
 	}
 
 	@Override
