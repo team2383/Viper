@@ -41,7 +41,7 @@ public class Constants {
 	
 	public static double kDriveWheelDiameter = 3.95;
 	public static double kDriveWheelCircumference = kDriveWheelDiameter * Math.PI;
-	public static double kDriveEncoderScalar = 20.0/42.0;
+	public static double kDriveEncoderScalar = 42.0/42.0;
 	public static double kDriveInchesPerDegree = kDriveWheelCircumference / 360.0;
 	public static double kDriveFeetPerDegree = kDriveInchesPerDegree / 12.0;
 	public static double kDriveUpshiftFPSThreshold = 4.0;
