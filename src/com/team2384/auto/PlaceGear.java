@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class PlaceGear extends CommandGroup {
 	public PlaceGear() {
-		addParallel(new MoveFangs(-0.5), 0.65);
+		addParallel(new MoveFangs(-0.5), 0.6);
 		addSequential(new WaitCommand(0.1));
 		addParallel(new SetState<Feeder.State>(feeder, Feeder.State.UNFEED, Feeder.State.STOPPED), 2);
 		addSequential(new WaitCommand(0.35));

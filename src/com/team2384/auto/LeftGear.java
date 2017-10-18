@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class LeftGear extends CommandGroup {
 	public LeftGear() {
-		addSequential(new DriveDistance(53, 0.80, false, true));
-		addSequential(new GyroTurn(0.8,57,1.5));
-		addSequential(new DriveDistance(65, 0.80, false, true));
+		addSequential(new DriveDistance(60, 0.60, false, true));
+		addSequential(new GyroTurn(0.7,57.5,1.5));
+		addSequential(new DriveDistance(72, 0.60, false, true));
 		addSequential(new PlaceGear());
 	}
 }

@@ -55,9 +55,9 @@ public class Constants {
 	public static double kDriveTurnVelocity = 1.0;
 
 	public static double kDriveHeadingMaintainTolerance = 0.0;
-	public static double kDriveHeadingMaintainP = 0.04;
-	public static double kDriveHeadingMaintainI = 0.000;
-	public static double kDriveHeadingMaintainD = 0.03;
+	public static double kDriveHeadingMaintainP = 0.021;
+	public static double kDriveHeadingMaintainI = 0.004;
+	public static double kDriveHeadingMaintainD = 0.025;
 	public static double kDriveHeadingMaintainF = 0;
 
 	public static double kDrivePositionTolerance = 0.5; //0.75

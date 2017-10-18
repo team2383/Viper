@@ -41,7 +41,7 @@ public class TeleopDriveStraight extends Command {
 	@Override
 	protected void execute() {
 		if (this.timeSinceInitialized() > 0.1) {
-			drivetrain.arcade(throttle.getAsDouble(), -headingController.get());
+			drivetrain.arcade(throttle.getAsDouble(), headingController.get());
 		} else {
 			drivetrain.arcade(throttle.getAsDouble(), 0);
 			System.out.println("Waiting for reset " + this.timeSinceInitialized());

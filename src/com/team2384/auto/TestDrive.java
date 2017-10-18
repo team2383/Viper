@@ -5,6 +5,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class TestDrive extends CommandGroup {
 	public TestDrive() {
-		addSequential(new DriveDistance(108, 0.60, false, true));
+		addSequential(new DriveDistance(0, 0.80, false, true));
 	}
 }

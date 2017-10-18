@@ -91,7 +91,9 @@ public class OI {
 	public static Button leftBumper = advancedOperator.getLeftShoulder();
 	public static Button rightBumper = advancedOperator.getRightShoulder();
 	
-	public static Button precisionDrive = new JoystickButton(advancedOperator,4);
+	public static Button precisionDrive = new JoystickButton(advancedOperator,2);
+	
+	public static Button driveStraight = new JoystickButton(advancedOperator,4);
 	
 	
 
@@ -100,7 +102,8 @@ public class OI {
 	public OI() {
 		
 		precisionDrive.toggleWhenPressed(new PrecisionDrive(throttle, turn));
-
+		
+		driveStraight.toggleWhenPressed(new TeleopDriveStraight(throttle));
 		climb.toggleWhenPressed(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		//climb.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		

@@ -36,7 +36,8 @@ public class Robot extends IterativeRobot {
 		
 		
 		autoChooser = new SendableChooser<Command>();
-		autoChooser.addDefault("Right Gear", new RightGear());
+		autoChooser.addDefault("Left Gear", new LeftGear());
+		//autoChooser.addObject("Right Gear", new RightGear());
 		//autoChooser.addObject("null auto", new NullAuto());
 		//autoChooser.addObject("Left Gear", new LeftGear());
 		//autoChooser.addObject("Test Drive", new TestDrive());
@@ -79,7 +80,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		
+		HAL.drivetrain.resetEncoders();
 		HAL.navX.reset();
 		
 		if (!generalPeriodicCommand.isRunning()) {
