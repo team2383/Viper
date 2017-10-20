@@ -103,7 +103,7 @@ public class OI {
 		
 		precisionDrive.toggleWhenPressed(new PrecisionDrive(throttle, turn));
 		
-		driveStraight.toggleWhenPressed(new TeleopDriveStraight(throttle));
+		//driveStraight.toggleWhenPressed(new TeleopDriveStraight(throttle));
 		climb.toggleWhenPressed(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		//climb.whileHeld(new SetState<Climber.State>(climber, Climber.State.CLIMB, Climber.State.STOPPED));
 		

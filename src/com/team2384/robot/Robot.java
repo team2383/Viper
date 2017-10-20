@@ -36,10 +36,10 @@ public class Robot extends IterativeRobot {
 		
 		
 		autoChooser = new SendableChooser<Command>();
-		autoChooser.addDefault("Left Gear", new LeftGear());
-		//autoChooser.addObject("Right Gear", new RightGear());
-		//autoChooser.addObject("null auto", new NullAuto());
-		//autoChooser.addObject("Left Gear", new LeftGear());
+		autoChooser.addDefault("Middle Gear", new MiddleGear());
+		autoChooser.addObject("Right Gear", new RightGear());
+		autoChooser.addObject("null auto", new NullAuto());
+		autoChooser.addObject("Left Gear", new LeftGear());
 		//autoChooser.addObject("Test Drive", new TestDrive());
 		//autoChooser.addObject("Test Turn", new TestTurn());
 		//autoChooser.addObject("Middle Gear", new MiddleGear());
