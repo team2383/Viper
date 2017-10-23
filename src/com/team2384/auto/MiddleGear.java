@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class MiddleGear extends CommandGroup {
 	public MiddleGear() {
-		addSequential(new DriveDistance(67, 0.60, false, true));
+		addSequential(new DriveDistance(70, 0.60, false, true));
 		addSequential(new PlaceGear());
 	}
 }
